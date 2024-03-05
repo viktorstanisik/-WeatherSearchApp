@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.verification-message {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verification-message h1 {
+  color: #333;
+}
+
+.message {
+  margin-top: 20px;
+}
+
+.success-message {
+  color: #4CAF50;
+}
+
+.error-message {
+  color: #F44336;
+}

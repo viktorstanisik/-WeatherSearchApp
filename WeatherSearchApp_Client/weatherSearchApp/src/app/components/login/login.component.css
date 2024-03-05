@@ -1,0 +1,78 @@
+.card-container {
+  padding: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  position: relative;
+  padding: 5rem 3rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.spinner-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title-login {
+  color: #333333;
+}
+
+.labels {
+  color: #333333;
+}
+
+.form-group {
+  margin: 1rem;
+}
+
+.btn {
+  margin: 1rem;
+  color: #333333;
+  border-color: #333333;
+}
+
+.form-control {
+  outline: none;
+  border: 1px solid #cccccc;
+  box-shadow: none;
+}
+
+.btn:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.line_login {
+  color: #333333;
+}
+.form-control:disabled.ng-valid:not(form),
+.form-control:disabled.ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+}
+
+.resend-link {
+  color: blue;
+  cursor: pointer;
+}
+
+.ml-5{
+ margin-left: 5px;
+}

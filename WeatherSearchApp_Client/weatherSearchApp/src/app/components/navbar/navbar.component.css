@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  color: #333333;
+  border-color: 1px solid black;
+
+}
+
+.btn {
+  color: #333333;
+  border-color: #333333;
+}
+
+.btn:hover {
+  background-color: #333333;
+  color: #ffffff;
+}

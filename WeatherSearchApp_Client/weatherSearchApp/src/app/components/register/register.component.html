@@ -1,0 +1,114 @@
+<div class="register_container">
+  <form
+    class="register_wrapper"
+    #registerForm="ngForm"
+    (ngSubmit)="register()"
+    autocomplete="off"
+  >
+    <h3 class="register-title text-center">Register</h3>
+    <hr class="line_register" />
+    <div class="form-group">
+      <label for="firstName" class="labels_register"
+        >Enter Your First Name</label
+      >
+      <input
+        type="text"
+        class="form-control ng-untouched ng-pristine ng-invalid"
+        name="firstName"
+        [(ngModel)]="registerModel.firstName"
+        placeholder="First Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="labels_register">Enter Your Last Name</label>
+      <input
+        type="text"
+        class="form-control ng-untouched ng-pristine ng-invalid"
+        name="lastName"
+        [(ngModel)]="registerModel.lastName"
+        placeholder="Last Name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email" class="labels_register">Enter Your Email</label>
+      <input
+        type="email"
+        class="form-control ng-untouched ng-pristine ng-invalid"
+        name="email"
+        [(ngModel)]="registerModel.email"
+        placeholder="Email"
+        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?"
+        required
+        #emailInput="ngModel"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password" class="labels_register">Enter Your Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="registerModel.password"
+        placeholder="Password"
+        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+        [ngClass]="{
+          'valid-input': passwordInput.valid && passwordInput.value && (!confirmPasswordInput.touched || confirmPasswordInput.value),
+          'ng-invalid': passwordInput.invalid && passwordInput.dirty && (!confirmPasswordInput.touched || confirmPasswordInput.value)
+        }"
+        #passwordInput="ngModel"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password" class="labels_register">Confirm Your Password</label>
+      <input
+      type="password"
+      class="form-control"
+      name="confirmPassword"
+      [(ngModel)]="registerModel.confirmPassword"
+      placeholder="Password"
+      pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+      required
+      [ngClass]="{
+        'valid-input': confirmPasswordInput.valid && confirmPasswordInput.value && (!passwordInput.touched || passwordInput.value),
+        'ng-invalid': confirmPasswordInput.invalid && confirmPasswordInput.dirty && (!passwordInput.touched || passwordInput.value)
+      }"
+      #confirmPasswordInput="ngModel"
+
+      />
+    </div>
+    <div class="form-group d-flex flex-column">
+      <div class="form-check test">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="registerModel.IsTwoFactorEnabled" id="flexCheckChecked" name="isTwoFactorEnabled">
+        <label class="form-check-label" for="flexCheckChecked">
+          Enable Two Factor Authentication
+        </label>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button
+      *ngIf="!requestIsLoading"
+        class="btn btn-outline-success"
+        type="submit"
+        [disabled]="!registerForm.valid || confirmPasswordInput.invalid || requestIsLoading "
+      >
+        Register
+      </button>
+      <button       *ngIf="!requestIsLoading"
+      class="btn btn-outline-success" type="button" (click)="cancel()">
+        Cancel
+      </button>
+      <div *ngIf="registerForm.dirty && passwordsDontMatch !== ''" class="alert alert-danger">
+        {{ passwordsDontMatch }}
+      </div>
+
+      <app-spinner *ngIf="requestIsLoading"></app-spinner>
+
+
+    </div>
+  </form>
+
+  <div>{{registerModel.firstName + registerModel.lastName +registerModel.email + registerModel.password + registerModel.confirmPassword + registerModel.IsTwoFactorEnabled}}</div>
+</div>

@@ -1,0 +1,89 @@
+.container {
+  margin-top: 5rem;
+  width: max-content;
+  padding: 5rem;
+
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.wrapperContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container h2 {
+margin-bottom: 2rem;
+}
+
+.info {
+  margin-bottom: 10px;
+}
+
+.info label {
+  font-weight: bold;
+  text-align: start;
+}
+
+.info span {
+  padding: 1rem;
+  text-align: start;
+}
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+input[type="password"] {
+  margin-top: 10px;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn {
+
+  margin: 1rem;
+  color: #333333;
+  border-color: #333333;
+}
+.btn:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.labels {
+  color: #333333;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+}
+.form-control {
+  max-width: max-content;
+}
+
+.disclaimer {
+  font-style: italic; /* Make text italic */
+  font-size: small; /* Make text smaller */
+}
+app-spinner {
+  margin-top: 1rem; /* Push the spinner to the bottom of the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

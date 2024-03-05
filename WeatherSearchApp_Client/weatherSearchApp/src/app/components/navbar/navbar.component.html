@@ -1,0 +1,15 @@
+<nav class="navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand" *ngIf="!(accountService.hasLoggedUser$ | async)">Weather Search App</a>
+    <div *ngIf="(accountService.hasLoggedUser$ | async) && showAccountPage">
+      <button class="btn btn-outline-success" (click)="goToHomePage()">Back to Home</button>
+    </div>
+    <div *ngIf="(accountService.hasLoggedUser$ | async) && !showAccountPage">
+      <button class="btn btn-outline-success" (click)="goToAccountPage()">My Account</button>
+    </div>
+    <div *ngIf="accountService.hasLoggedUser$ | async as currentUser">
+      <button class="btn btn-outline-success" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+</nav>

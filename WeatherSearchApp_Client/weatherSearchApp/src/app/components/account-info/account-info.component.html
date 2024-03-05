@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="wrapperContainer" *ngIf="!showConfirmationScreen">
+    <h2>User Information</h2>
+  <div class="info">
+      <label>First Name:</label>
+      <span>{{ accountInfoModel.firstName }}</span>
+  </div>
+  <div class="info">
+      <label>Last Name:</label>
+      <span>{{ accountInfoModel.lastName }}</span>
+  </div>
+  <div class="info">
+      <label>Email:</label>
+      <span>{{ accountInfoModel.email }}</span>
+  </div>
+  <div class="info">
+      <button
+        class="btn btn-outline-dark"
+        type="button"
+        (click)="setShowConfirmationScreen()"
+      >
+        {{twoFactorAuthText}}
+      </button>
+  </div>
+</div>
+  <div *ngIf="showConfirmationScreen">
+    <div class="inputWrapper">
+    <label for="password" class="labels">Enter Your Password</label>
+    <input
+      name="password"
+      [(ngModel)]="changeTwoFactorAuthStatusModel.password"
+      class="form-control ng-untouched ng-pristine ng-invalid"
+      type="password"
+      placeholder="Password"
+      pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+      required
+    />
+  </div>
+  <div *ngIf="!showSpinner" class="buttonContainer">
+      <button class="btn btn-outline-success" type="button" (click)="changeTwoFactorAuthenticationStatus()">Submit</button>
+
+      <button class="btn btn-outline-success" type="button" (click)="setShowConfirmationScreen()">Cancel</button>
+    </div>
+    <p *ngIf="!showSpinner" class="disclaimer">With Submitting you agree to {{is2faEnabledText}} two factor Authentication</p>
+  </div>
+  <app-spinner *ngIf="showSpinner"></app-spinner>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="main_container">
+  <div class="weather_wrapper">
+    <form #getWeatherForm="ngForm" (ngSubmit)="getWeather()" autocomplete="off">
+      <h2 class="search-text text-center">Enter City Name</h2>
+      <div class="form-group ng-untouched ng-pristine ng-invalid">
+        <input
+        type="text"
+        class="form-control"
+        name="City Name"
+        [(ngModel)]="model.cityName"
+        placeholder="City Name"
+        minlength="3"
+        pattern="/^[a-zA-Z]+$/"
+        required
+        />
+      </div>
+      <div class="form-group text-center" *ngIf="!showSpinner">
+        <button class="btn btn-outline-success" type="submit" [disabled]="this.showSpinner">Search</button>
+      </div>
+
+    </form>
+    <app-spinner *ngIf="showSpinner"></app-spinner>
+  </div>
+  <div class="card" *ngIf="cities">
+    <div *ngFor="let item of cities">
+      <div class="photo-card">
+        <h5 class="card-title">Date: {{ item.date | datePipe }}</h5>
+        <img [src]="'assets/' + (item.weatherCondition === 'Rain' ? 'rain.svg' : item.weatherCondition === 'Clouds' ? 'cloud.svg' : 'sun.svg')" alt="" class="weather-icon">
+        <p class="card-text">Conditions {{ item.weatherCondition }}</p>
+        <p class="card-text">Temperature: {{ item.temperature }}</p>
+        <p class="card-text">Feels like {{ item.feelsLike }}</p>
+        <p class="card-text">
+          Maximum Temperature {{ item.maximumTemperature }}
+        </p>
+        <p class="card-text">
+          Minimum Temperature: {{ item.minimumTemperature }}
+        </p>
+        <p class="card-text">Humidity: {{ item.humidity }}</p>
+      </div>
+    </div>
+  </div>
+</div>

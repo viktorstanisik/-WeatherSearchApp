@@ -1,0 +1,86 @@
+<div class="card-container">
+  <form
+    class="wrapper"
+    *ngIf="!(accountService.hasLoggedUser$ | async)"
+    #loginForm="ngForm"
+    (ngSubmit)="showSecurityCodeField ? verifyTheSecurityCode() : login()"
+    autocomplete="off"
+  >
+    <ng-container *ngIf="!showSecurityCodeField">
+      <h3 class="title-login text-center">Login</h3>
+      <div class="form-group">
+        <hr class="line_login" />
+        <label for="email" class="labels">Enter Your Email</label>
+        <input
+          name="email"
+          [(ngModel)]="loginModel.email"
+          class="form-control ng-untouched ng-pristine ng-invalid"
+          type="email"
+          placeholder="Email"
+          pattern="[A-Za-z0-9.%-]+@[A-Za-z0-9.%-]+\.[a-z]{2,3}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="password" class="labels">Enter Your Password</label>
+        <input
+          name="password"
+          [(ngModel)]="loginModel.password"
+          class="form-control ng-untouched ng-pristine ng-invalid"
+          type="password"
+          placeholder="Password"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+          required
+        />
+      </div>
+    </ng-container>
+    <div class="form-group" *ngIf="showSecurityCodeField">
+      <label for="text" class="labels">Enter Security Code</label>
+      <input
+        name="text"
+        [(ngModel)]="verifyTwoFactorModel.securityCode"
+        class="form-control ng-untouched ng-pristine ng-invalid"
+        type="text"
+        placeholder="Security Code"
+        [pattern]="generateRegex()"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <button
+        class="btn btn-outline-success"
+        *ngIf="!showSecurityCodeField && !showSpinner"
+        type="submit"
+        [disabled]="!loginForm.form.valid"
+      >
+        Login
+      </button>
+      <button
+        class="btn btn-outline-success"
+        *ngIf="!showSecurityCodeField && !showSpinner"
+        type="button"
+        routerLink="/register"
+      >
+        Register
+      </button>
+
+    </div>
+      <button
+        class="btn btn-outline-success"
+        *ngIf="showSecurityCodeField && !showSpinner"
+        type="submit"
+        [disabled]="!loginForm.form.valid"
+      >
+        Confirm Code
+      </button>
+
+      <p *ngIf="this.showSecurityCodeField && !showSpinner">
+        Didnt recieve a code?
+        <span class="resend-link" (click)="resendCode()">Resend</span> here.
+      </p>
+    <div class="spinner-container" *ngIf="showSpinner">
+      <app-spinner></app-spinner>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,49 @@
+Feature: User Authentication and Account Management
+
+Scenario: User Registration
+    Given I am a user on the login page
+    When I choose to register
+    Then I should see fields for FirstName, LastName, Email, Password, and Confirm Password
+    And Password should contain at least one character and start with a capital letter
+    And I should be able to enable two-factor authentication
+    And I fill in the registration form
+    And I submit the registration form
+    Then I should be redirected to the login page
+    And I should see a notification to check my email for account confirmation
+
+Scenario: Account Confirmation
+    Given I have registered an account
+    When I click on the confirmation link in the email
+    Then my account should be verified
+    And I should be able to log in
+
+Scenario: Two-Factor Authentication
+    Given I have two-factor authentication enabled
+    And I am logged in
+    When I enter my credentials
+    Then I should be prompted to enter the security code
+    And an email with a generated security code should be sent to me
+    When I enter the correct security code
+    Then I should be able to access the home page
+    When I enter an incorrect security code three times
+    Then my account should be locked for 24 hours
+
+Scenario: Weather Search
+    Given I am logged in
+    When I view the home page
+    Then I should see a search input for weather
+    When I enter a valid city name
+    Then the API should return basic weather data
+    When I enter an invalid city name
+    Then the API should return an error for invalid city name
+
+Scenario: Navigation
+    Given I am logged in
+    When I view the home page
+    Then I should see buttons for My Account and Logout in the navigation panel
+
+Scenario: My Account Details
+    Given I am logged in
+    And I click on the My Account button
+    Then I should see a form displaying my user information
+    And I should see a button to enable/disable two-factor authentication
