@@ -20,9 +20,12 @@ export class AppComponent implements OnInit {
           const routeName = this.getCurrentRouteName();
           //Check what is the entered route if the entered route is not from router config or is get weather route the user to default (get weather)
           //if the route is some route from predefined routes than route to that one
-          if (routeName && routeName !== '' &&
-              routeName !== 'getweather' &&
-              this.getPredefinedRoutes().includes(routeName)) {
+          const routesToReRoute = routeName && routeName !== '' &&
+                                  routeName !== 'getweather' &&
+                                  routeName !== 'register';
+
+
+          if (routesToReRoute && this.getPredefinedRoutes().includes(routeName)) {
 
             this.router.navigate([routeName]);
 
