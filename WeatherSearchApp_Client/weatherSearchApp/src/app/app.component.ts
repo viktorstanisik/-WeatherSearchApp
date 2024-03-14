@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
       if (authenticated) {
         const canActivate = this.authGuard.canActivate();
         if (canActivate) {
-          //get the currentRoute in order to know where to navigate
           const routeName = this.getCurrentRouteName();
           //Check what is the entered route if the entered route is not from router config or is get weather route the user to default (get weather)
           //if the route is some route from predefined routes than route to that one
@@ -39,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   getCurrentRouteName(): string {
-    const currentUrl = this.router.url;
+    const currentUrl = window.location.href;
     const routeParts = currentUrl.split('/'); // Split the URL by '/'
     return routeParts[routeParts.length - 1]; // Get the last segment as the route name
   }

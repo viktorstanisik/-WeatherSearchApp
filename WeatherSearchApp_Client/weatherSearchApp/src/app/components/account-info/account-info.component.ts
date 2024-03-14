@@ -32,11 +32,7 @@ export class AccountInfoComponent implements OnInit {
   is2faEnabledText: string = ''
 
   ngOnInit(): void {
-    if(!this.accountService.isUserAuthenticated()) {
-      this.router.navigateByUrl('/')
-    }
-    this.getAccountInfo(); // Call the method to get account info when component initializes
-
+   this.getAccountInfo(); // Call the method to get account info when component initializes
   }
 
     getAccountInfo() {
