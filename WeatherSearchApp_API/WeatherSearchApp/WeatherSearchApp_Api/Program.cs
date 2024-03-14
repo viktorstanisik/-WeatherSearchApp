@@ -92,11 +92,11 @@ builder.Services.AddAuthorization();
 //DB Connection
 var dbConnectionString = builder.Configuration["ConnectionStrings:DatabaseConnectionString"];
 
-//builder.Services.AddDbContext<WeatherSearchAppDbContext>(options => options
-//                .UseSqlServer(dbConnectionString));
-
 builder.Services.AddDbContext<WeatherSearchAppDbContext>(options => options
-                .UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
+                .UseSqlServer(dbConnectionString));
+
+//builder.Services.AddDbContext<WeatherSearchAppDbContext>(options => options
+//                .UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
 
 
 builder.Services.AddHttpContextAccessor();
